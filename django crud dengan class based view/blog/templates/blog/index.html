@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+    {{title}}
+{% endblock page_title %}
+
+{% block jumbotron %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Fluid jumbotron</h1>
+    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+  </div>
+</div>
+{% endblock jumbotron %}
+
+{% block contents %}
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Kategori
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="{% url 'blog:index' %}">Semua Kategori</a>
+        {% for kategori in list_content %}
+          <a href="{% url 'blog:index' %}?content_filter={{kategori}}" class="dropdown-item">
+            {{kategori}}
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="mt-3">
+    {% for konten in content %}
+        <div class="float-right">
+            <a class="btn btn-danger" href="{% url 'blog:delete' konten.id %}">Hapus</a>
+            <a href="{% url 'blog:update' konten.id %}" class="btn btn-warning">Update</a>
+        </div>
+        <h2>{{konten.judul}}</h2>
+        <h4>Penulis: {{konten.penulis}}</h4>
+        <h4>Kategori: {{konten.kategori}}</h4>
+        <p>{{konten.body|truncatechars:255}}</p>
+    {% endfor %}
+    </div>
+{% endblock contents %}

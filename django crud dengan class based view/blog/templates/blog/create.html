@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+    {{title}}
+{% endblock page_title %}
+
+{% block contents %}
+    <h1>{{title}}</h1>
+    <br>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {% for konten in content %}
+                {{konten.label}}
+                {{konten}}
+            {% endfor %}
+        </div>
+        <button type="submit">Kirim</button>
+    </form>
+{% endblock contents %}
