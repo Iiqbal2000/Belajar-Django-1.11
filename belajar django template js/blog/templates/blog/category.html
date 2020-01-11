@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block judul %}
+    Blog - Kategori
+{% endblock judul %}
+
+{% block artikel %}
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url "blog:index" %}">All Post</a>
+        </li>
+    {% for kategori in kategoriLink %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url "blog:kategori" kategori.category %}">{{kategori.category}}</a>
+        </li>
+    {% endfor %}
+    </ul>
+
+    {% for kategori in post %}
+        <a class="" href="{% url "blog:slug" kategori.slug %}">
+            <h2>{{kategori.judul}}</h2>
+        </a>
+        <p>{{kategori.publish}}</p>
+        <p>{{kategori.body|truncatechars:200}}</p>
+    {% endfor %}
+
+{% endblock artikel %}

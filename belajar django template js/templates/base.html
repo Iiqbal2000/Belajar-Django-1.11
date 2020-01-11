@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    {% include 'snippets/styles.html' %}
+    <title>
+        {% block judul %}
+
+        {% endblock judul %}
+    </title>
+</head>
+<body>
+    {% include 'snippets/navbars.html' %}
+        <div class="{% block jumbotr %}{% endblock jumbotr %}">
+            <div class="container">
+                <h1 class="display-4">
+                    {% block judulHalaman %}
+
+                    {% endblock judulHalaman %}
+                </h1>
+                <p class="lead">
+                    {% block konten %}
+                
+                    {% endblock konten %}
+                </p>
+            </div>
+        </div>
+
+        <div class="container">
+        
+            {% block artikel %}
+            
+            {% endblock artikel %}
+        
+        </div>
+
+    {% include 'snippets/scripts.html' %}
+
+</body>
+</html>

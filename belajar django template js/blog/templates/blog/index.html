@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block judul %}
+    {{judul}}
+{% endblock judul %}
+
+{% block jumbotr %}
+jumbotron jumbotron-fluid
+{% endblock jumbotr %}
+
+
+{% block judulHalaman %}
+    {{judul}}
+{% endblock judulHalaman %}
+
+{% block konten %}
+    {{kontenHal}}
+{% endblock konten %}
+
+{% block artikel %}
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url "blog:index" %}">All Post</a>
+        </li>
+    {% for kategori in kategoriLink %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url "blog:kategori" kategori.category %}">{{kategori.category}}</a>
+        </li>
+    {% endfor %}
+    </ul>
+
+    {% for artikel in post %}
+        <a class="" href="{% url "blog:slug" artikel.slug %}">
+            <h2>{{artikel.judul}}</h2>
+        </a>
+        <p>{{artikel.publish}}</p>
+        <p>{{artikel.body|truncatechars:200}}</p>
+
+    {% endfor %}
+
+{% endblock artikel %}

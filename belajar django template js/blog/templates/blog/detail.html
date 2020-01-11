@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block judul %}
+    Blog - {{post.judul}}
+{% endblock judul %}
+
+{% block artikel %}
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'blog:index' %}">All Post</a>
+        </li>
+    </ul>
+    <h2>{{post.judul}}</h2>
+    <p>{{post.publish}}</p>
+    <p>{{post.body}}</p>
+{% endblock artikel %}
