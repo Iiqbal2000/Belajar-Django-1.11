@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{page_title1}}</title>
+</head>
+<body>
+    <h1>{{page_title2}}</h1>
+    
+    <a href="{% url 'blog:create' %}">Create Article</a>
+
+    <br><br>
+    <form action="{% url 'blog:search'  %}" method="get">
+        <input type="text" name="q" placeholder="Search.....">
+    </form>
+
+    <ol>
+        {% for article in object_list %}
+            <li><a href="{% url 'blog:detail' article.slug %}">{{article.judul}} - oleh {{article.penulis}}</a>
+            </li>
+        {% endfor %}
+    </ol>
+
+    <span>
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{page_obj.previous_page_number}}">previous</a>
+        {% endif %}
+
+        <span>
+            hal {{page_obj.number}} dari {{page_obj.paginator.num_pages}}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{page_obj.next_page_number}}">next</a>
+            <a href="?page={{page_obj.paginator.num_pages}}">last &raquo;</a>
+        {% endif %}
+    </span>
+</body>
+</html>
